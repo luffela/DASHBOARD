@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+.impeccable/review/
+.impeccable/check_contract.py
+.impeccable/inspect_controls.py
+pavetrack-preview*.log
+screenshots/

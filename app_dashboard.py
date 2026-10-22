@@ -1,347 +1,133 @@
 import math
+
 import streamlit as st
 
 from modules.csv_in import process_uploaded_csv
 from modules.aadt_calc import compute_aadt
 from modules.esal_calc import compute_cumulative_esal
 from modules.pavement_engine import compute_pavement_thickness
-
-# ================= PAGE CONFIG =================
-
-st.set_page_config(
-    page_title="PAVEtrack Dashboard",
-    layout="wide"
+from dashboard_ui import (
+    ASSETS, render_empty_state, render_panel_heading,
+    render_results, render_results_heading, render_shell,
 )
 
-# ================= CUSTOM CSS =================
 
-st.markdown("""
-<style>
+st.set_page_config(page_title="PAVEtrack Dashboard", layout="wide")
+render_shell()
 
-/* App background */
-.stApp {
-    background-color: #eef2f7;
-}
+with st.container(key="workspace"):
+    left, right = st.columns([1, 2.65], gap="large")
 
-/* Main page spacing */
-.block-container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-
-/* Header card */
-.header-card {
-    background-color: #dfe5ec;
-    padding: 25px;
-    border-radius: 16px;
-    border: 1px solid #c8d0d9;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Metric cards */
-[data-testid="metric-container"] {
-    background-color: #f8fafc;
-    border: 1px solid #d9e1ea;
-    padding: 10px;
-    border-radius: 12px;
-}
-
-/* Section titles */
-.section-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #2f3e4e;
-    margin-bottom: 10px;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# ================= HEADER =================
-
-st.markdown("""
-<div style='padding:20px; background:#dfe5ec; border-radius:12px; text-align:center;'>
-    <h1>PAVEtrack Intelligent Pavement Monitoring Dashboard</h1>
-    <p>Traffic Analysis • ESAL Computation • Pavement Thickness Estimation</p>
-</div>
-""", unsafe_allow_html=True)
-
-# ================= MAIN COLUMNS =================
-
-left, right = st.columns([1, 2], gap="large")
-
-# ================= LEFT PANEL =================
-
-with left:
-
-    with st.container(border=True):
-
-        st.markdown(
-            "<div class='section-title'>Input Control Panel</div>",
-            unsafe_allow_html=True
-        )
-
-        st.markdown("---")
-
-        uploaded_file = st.file_uploader(
-            "Upload Consolidated Traffic CSV File",
-            type=["csv"]
-        )
-
-        pavement_type = st.selectbox(
-            "Pavement Type",
-            ["Flexible", "Rigid"],
-            index=None,
-            placeholder="Select Pavement Type"
-        )
-
-        # =====================================================
-        # CBR INPUT
-        # =====================================================
-
-        cbr = st.selectbox(
-            "Subgrade CBR",
-            [3, 5, 8, 10, 12],
-            index=None,
-            placeholder="Select CBR Value"
-        )
-
-        growth_rate_percent = st.text_input(
-            "Annual Growth Rate (%)",
-            placeholder="Enter Annual Growth Rate"
-        )
-
-        design_life = st.text_input(
-            "Design Life (Years)",
-            placeholder="Enter Design Life"
-        )
-
-        location = st.text_input(
-            "Project Location"
-        )
-
-# ================= RIGHT PANEL =================
-
-with right:
-
-    with st.container(border=True):
-
-        st.markdown(
-            "<div class='section-title'>Traffic Analysis Results</div>",
-            unsafe_allow_html=True
-        )
-
-        st.markdown("---")
-
-        # =====================================================
-        # INPUT VALIDATION
-        # =====================================================
-
-        if uploaded_file and (
-            pavement_type is None or
-            cbr is None or
-            growth_rate_percent == "" or
-            design_life == ""
-        ):
-
-            st.warning(
-                "Please complete all engineering input parameters before analysis."
+    with left:
+        with st.container(key="project_setup"):
+            render_panel_heading()
+            uploaded_file = st.file_uploader(
+                "Upload Consolidated Traffic CSV File", type=["csv"],
             )
+            with st.expander("Sample CSV"):
+                st.download_button(
+                    "Download sample CSV", (ASSETS / "sample_traffic.csv").read_bytes(),
+                    file_name="sample_traffic.csv", mime="text/csv",
+                    icon=":material/download:",
+                )
 
-        elif uploaded_file:
+            pavement_type = st.selectbox(
+                "Pavement Type", ["Flexible", "Rigid"], index=None,
+                placeholder="Select Pavement Type",
+            )
+            cbr = st.selectbox(
+                "Subgrade CBR", [3, 5, 8, 10, 12], index=None,
+                placeholder="Select CBR Value",
+            )
+            growth_rate_percent = st.text_input(
+                "Annual Growth Rate (%)", placeholder="Enter Annual Growth Rate",
+            )
+            design_life = st.text_input("Design Life (Years)", placeholder="Enter Design Life")
+            location = st.text_input("Project Location")
 
+    with right:
+        incomplete = (
+            pavement_type is None or cbr is None
+            or growth_rate_percent == "" or design_life == ""
+        )
+        if not uploaded_file or incomplete:
+            render_results_heading(location)
+            render_empty_state(has_file=bool(uploaded_file))
+        else:
             try:
+                # Validate user input in the UI; the calculation modules are unchanged.
+                try:
+                    growth_rate_value = float(growth_rate_percent)
+                    design_life_value = int(design_life)
+                except ValueError:
+                    raise ValueError(
+                        "Enter a numeric annual growth rate and a whole number of design years."
+                    ) from None
+                if not math.isfinite(growth_rate_value) or growth_rate_value <= 0:
+                    raise ValueError("Annual Growth Rate must be greater than 0% for this model.")
+                if design_life_value <= 0:
+                    raise ValueError("Design Life must be at least 1 year.")
 
-                # =====================================================
-                # INPUT CONVERSION
-                # =====================================================
+                # Existing processing and engineering pipeline.
+                merged_df, total_count, total_esal, num_days = process_uploaded_csv(uploaded_file)
+                if num_days == 0:
+                    raise ValueError("Add at least one daily count column to your CSV, such as DAY1.")
+                if "VEHICLE CLASS" not in merged_df.columns:
+                    raise ValueError("Your CSV needs a VEHICLE CLASS column. Use the sample CSV as a guide.")
+                if merged_df.empty:
+                    raise ValueError("Your CSV has no traffic rows. Add vehicle classes and their daily counts.")
 
-                growth_rate_value = float(growth_rate_percent)
-                design_life_value = int(design_life)
-
-                # =====================================================
-                # CSV PROCESSING
-                # =====================================================
-
-                merged_df, total_count, total_esal, num_days = process_uploaded_csv(
-                    uploaded_file
-                )
-
-                # =====================================================
-                # AADT COMPUTATION
-                # =====================================================
-
-                aadt = compute_aadt(
-                    total_count,
-                    num_days
-                )
-
-                # =====================================================
-                # ESAL COMPUTATION
-                # =====================================================
-
+                aadt = compute_aadt(total_count, num_days)
                 cumulative_esal, daily_esal = compute_cumulative_esal(
-                    total_esal,
-                    growth_rate_value / 100,
-                    design_life_value
+                    total_esal, growth_rate_value / 100, design_life_value
                 )
-
-                # =====================================================
-                # PAVEMENT THICKNESS
-                # =====================================================
-
                 thickness_m, thickness_mm = compute_pavement_thickness(
-                    cumulative_esal,
-                    cbr,
-                    pavement_type
+                    cumulative_esal, cbr, pavement_type
                 )
 
-                # =====================================================
-                # ROUND TO NEXT 10 mm
-                # =====================================================
-
+                # Preserve the original rounding, minimums, and recommendations.
                 recommended_thickness = math.ceil(thickness_mm / 10) * 10
-
-                # =====================================================
-                # ENGINEERING RECOMMENDATION
-                # =====================================================
-
                 if pavement_type == "Flexible":
-
                     if recommended_thickness < 150:
                         recommended_thickness = 150
-
                     if recommended_thickness <= 200:
-
-                        pavement_recommendation = (
-                            "Suitable for light-volume flexible pavement roads."
-                        )
-
+                        pavement_recommendation = "Suitable for light-volume flexible pavement roads."
                     elif recommended_thickness <= 350:
-
-                        pavement_recommendation = (
-                            "Recommended for medium-volume arterial roads."
-                        )
-
+                        pavement_recommendation = "Recommended for medium-volume arterial roads."
                     elif recommended_thickness <= 500:
-
-                        pavement_recommendation = (
-                            "Recommended for heavily trafficked national roads."
-                        )
-
+                        pavement_recommendation = "Recommended for heavily trafficked national roads."
                     elif recommended_thickness <= 700:
-
-                        pavement_recommendation = (
-                            "Suitable for high ESAL freight and highway corridors."
-                        )
-
+                        pavement_recommendation = "Suitable for high ESAL freight and highway corridors."
                     else:
-
-                        pavement_recommendation = (
-                            "Suitable for very heavy-duty pavement applications."
-                        )
-
+                        pavement_recommendation = "Suitable for very heavy-duty pavement applications."
                 else:
-
                     if recommended_thickness < 200:
                         recommended_thickness = 200
-
                     if recommended_thickness <= 250:
-
-                        pavement_recommendation = (
-                            "Suitable for light to medium rigid pavement applications."
-                        )
-
+                        pavement_recommendation = "Suitable for light to medium rigid pavement applications."
                     elif recommended_thickness <= 350:
-
-                        pavement_recommendation = (
-                            "Recommended for major concrete roadway facilities."
-                        )
-
+                        pavement_recommendation = "Recommended for major concrete roadway facilities."
                     else:
+                        pavement_recommendation = "Recommended for high-load rigid pavement structures."
 
-                        pavement_recommendation = (
-                            "Recommended for high-load rigid pavement structures."
-                        )
-
-                # =====================================================
-                # SUCCESS MESSAGE
-                # =====================================================
-
-                st.success(
-                    "Traffic File Processed Successfully"
+                render_results(
+                    merged_df=merged_df, total_count=total_count, num_days=num_days,
+                    aadt=aadt, daily_esal=daily_esal, cumulative_esal=cumulative_esal,
+                    recommended_thickness=recommended_thickness, pavement_type=pavement_type,
+                    pavement_recommendation=pavement_recommendation, cbr=cbr,
+                    growth_rate_value=growth_rate_value, design_life_value=design_life_value,
+                    thickness_mm=thickness_mm, location=location,
                 )
-
-                # =====================================================
-                # METRICS
-                # =====================================================
-
-                col1, col2, col3 = st.columns(3)
-
-                with col1:
-
-                    st.metric(
-                        "Location",
-                        location if location else "Not Specified"
-                    )
-
-                with col2:
-
-                    st.metric(
-                        "AADT",
-                        f"{aadt:,.2f} veh/day"
-                    )
-
-                with col3:
-
-                    st.metric(
-                        "Recommended Pavement Thickness",
-                        f"{recommended_thickness} mm"
-                    )
-
-                # =====================================================
-                # ENGINEERING NOTES
-                # =====================================================
-
-                st.info(pavement_recommendation)
-
-                st.caption(
-                    """
-                    Final pavement thickness output is presented as the
-                    recommended practical design thickness after rounding
-                    to the nearest standard construction value and applying
-                    minimum pavement design considerations.
-                    """
-                )
-
-                st.caption(
-                    f"""
-                    Daily ESAL: {daily_esal:,.2f} |
-                    Cumulative ESAL: {cumulative_esal:,.2f}
-                    """
-                )
-
-                # =====================================================
-                # TRAFFIC DATA TABLE ONLY
-                # =====================================================
-
-                st.markdown("### Uploaded Traffic Data")
-
-                st.dataframe(
-                    merged_df,
-                    use_container_width=True,
-                    height=500
-                )
-
-            except ValueError:
-
-                st.error(
-                    "Annual Growth Rate and Design Life must contain valid numeric values only."
-                )
-
+            except (ValueError, OverflowError) as error:
+                render_results_heading(location)
+                st.error(str(error) if isinstance(error, ValueError) else
+                         "These inputs exceed the model’s numeric range. Check the growth rate and design life.")
+            except KeyError:
+                render_results_heading(location)
+                st.error("Your CSV is missing a required column. Include VEHICLE CLASS, ESAL FACTOR, and DAY1…DAYn. You can download a sample in Input Control Panel.")
+            except (TypeError, ZeroDivisionError):
+                render_results_heading(location)
+                st.error("Check your CSV: ESAL factors and daily counts must be numeric, with at least one monitoring day.")
             except FileNotFoundError:
-
-                st.error(
-                    "Required processing file not found."
-                )
+                render_results_heading(location)
+                st.error("Required processing file not found.")

@@ -44,3 +44,31 @@ deliberately — don't leave two versions live at once.
 `app_dashboard.py` does not currently render the geospatial thickness map. The map
 logic lives in `gis_module.py` and the archived `new.py`/`nap.py`. Re-wire it into
 `app_dashboard.py` if the map needs to appear in the live dashboard.
+
+## Presentation and local preview
+
+`dashboard_ui.py` renders the shell, empty state, metrics, recommendation, and result tabs. `assets/dashboard.css` controls the responsive layout; `.streamlit/config.toml` sets the native widget theme. [DESIGN.md](DESIGN.md) records the implemented tokens and patterns, with preview specimens in `.impeccable/design.json`. Calculation modules and their existing arguments remain the canonical pipeline above.
+
+From `DASHBOARD`, with Streamlit and pandas installed (verified with Streamlit 1.65):
+
+```powershell
+python -m streamlit run app_dashboard.py
+```
+
+For the separate review preview at http://127.0.0.1:8502:
+
+```powershell
+python -m streamlit run app_dashboard.py --server.address 127.0.0.1 --server.port 8502
+```
+
+Upload a consolidated CSV, choose pavement type and CBR, and enter a positive growth percentage and whole-number design life. Results update automatically; project location is optional. The downloadable sample in `assets/sample_traffic.csv` was copied from `videos/compare/sample_thesis_morning.csv` in the workspace. No raster assets are required by the interface.
+
+With the preview running, the browser check requires Playwright and Chromium:
+
+```powershell
+python -m pip install playwright
+python -m playwright install chromium
+python tests/ui_smoke.py
+```
+
+The check covers result values, input/error recovery, downloads, and responsive overflow at 390, 768, 1024, 1440, and 1920px. Screenshots and `browser-report.json` are written to `.impeccable/review/`. Recheck native control styles after Streamlit upgrades because the stylesheet targets framework markup.

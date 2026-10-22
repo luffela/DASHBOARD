@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T05:14:13.363083+00:00",
+  "title": "Design System: PAVEtrack Dashboard",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.04110 261.83)",
+          "oklch(26.43% 0.04110 261.83)",
+          "oklch(37.86% 0.04110 261.83)",
+          "oklch(49.29% 0.04110 261.83)",
+          "oklch(60.71% 0.04110 261.83)",
+          "oklch(72.14% 0.04110 261.83)",
+          "oklch(83.57% 0.04110 261.83)",
+          "oklch(95.00% 0.04110 261.83)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.03762 258.36)",
+          "oklch(26.43% 0.03762 258.36)",
+          "oklch(37.86% 0.03762 258.36)",
+          "oklch(49.29% 0.03762 258.36)",
+          "oklch(60.71% 0.03762 258.36)",
+          "oklch(72.14% 0.03762 258.36)",
+          "oklch(83.57% 0.03762 258.36)",
+          "oklch(95.00% 0.03762 258.36)"
+        ]
+      },
+      "blue": {
+        "role": "primary",
+        "displayName": "Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.21521 262.88)",
+          "oklch(26.43% 0.21521 262.88)",
+          "oklch(37.86% 0.21521 262.88)",
+          "oklch(49.29% 0.21521 262.88)",
+          "oklch(60.71% 0.21521 262.88)",
+          "oklch(72.14% 0.21521 262.88)",
+          "oklch(83.57% 0.21521 262.88)",
+          "oklch(95.00% 0.21521 262.88)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.01382 258.35)",
+          "oklch(26.43% 0.01382 258.35)",
+          "oklch(37.86% 0.01382 258.35)",
+          "oklch(49.29% 0.01382 258.35)",
+          "oklch(60.71% 0.01382 258.35)",
+          "oklch(72.14% 0.01382 258.35)",
+          "oklch(83.57% 0.01382 258.35)",
+          "oklch(95.00% 0.01382 258.35)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 89.88)",
+          "oklch(26.43% 0.00000 89.88)",
+          "oklch(37.86% 0.00000 89.88)",
+          "oklch(49.29% 0.00000 89.88)",
+          "oklch(60.71% 0.00000 89.88)",
+          "oklch(72.14% 0.00000 89.88)",
+          "oklch(83.57% 0.00000 89.88)",
+          "oklch(95.00% 0.00000 89.88)"
+        ]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas",
+        "tonalRamp": [
+          "oklch(15.00% 0.00574 264.53)",
+          "oklch(26.43% 0.00574 264.53)",
+          "oklch(37.86% 0.00574 264.53)",
+          "oklch(49.29% 0.00574 264.53)",
+          "oklch(60.71% 0.00574 264.53)",
+          "oklch(72.14% 0.00574 264.53)",
+          "oklch(83.57% 0.00574 264.53)",
+          "oklch(95.00% 0.00574 264.53)"
+        ]
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field border",
+        "tonalRamp": [
+          "oklch(15.00% 0.03347 258.94)",
+          "oklch(26.43% 0.03347 258.94)",
+          "oklch(37.86% 0.03347 258.94)",
+          "oklch(49.29% 0.03347 258.94)",
+          "oklch(60.71% 0.03347 258.94)",
+          "oklch(72.14% 0.03347 258.94)",
+          "oklch(83.57% 0.03347 258.94)",
+          "oklch(95.00% 0.03347 258.94)"
+        ]
+      },
+      "download-surface": {
+        "role": "neutral",
+        "displayName": "Download surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.00132 286.38)",
+          "oklch(26.43% 0.00132 286.38)",
+          "oklch(37.86% 0.00132 286.38)",
+          "oklch(49.29% 0.00132 286.38)",
+          "oklch(60.71% 0.00132 286.38)",
+          "oklch(72.14% 0.00132 286.38)",
+          "oklch(83.57% 0.00132 286.38)",
+          "oklch(95.00% 0.00132 286.38)"
+        ]
+      },
+      "download-hover": {
+        "role": "primary",
+        "displayName": "Download hover",
+        "tonalRamp": [
+          "oklch(15.00% 0.01485 260.73)",
+          "oklch(26.43% 0.01485 260.73)",
+          "oklch(37.86% 0.01485 260.73)",
+          "oklch(49.29% 0.01485 260.73)",
+          "oklch(60.71% 0.01485 260.73)",
+          "oklch(72.14% 0.01485 260.73)",
+          "oklch(83.57% 0.01485 260.73)",
+          "oklch(95.00% 0.01485 260.73)"
+        ]
+      },
+      "recommendation-surface": {
+        "role": "primary",
+        "displayName": "Recommendation surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.02027 264.47)",
+          "oklch(26.43% 0.02027 264.47)",
+          "oklch(37.86% 0.02027 264.47)",
+          "oklch(49.29% 0.02027 264.47)",
+          "oklch(60.71% 0.02027 264.47)",
+          "oklch(72.14% 0.02027 264.47)",
+          "oklch(83.57% 0.02027 264.47)",
+          "oklch(95.00% 0.02027 264.47)"
+        ]
+      },
+      "recommendation-border": {
+        "role": "primary",
+        "displayName": "Recommendation border",
+        "tonalRamp": [
+          "oklch(15.00% 0.04612 263.71)",
+          "oklch(26.43% 0.04612 263.71)",
+          "oklch(37.86% 0.04612 263.71)",
+          "oklch(49.29% 0.04612 263.71)",
+          "oklch(60.71% 0.04612 263.71)",
+          "oklch(72.14% 0.04612 263.71)",
+          "oklch(83.57% 0.04612 263.71)",
+          "oklch(95.00% 0.04612 263.71)"
+        ]
+      },
+      "recommendation-heading": {
+        "role": "primary",
+        "displayName": "Recommendation heading",
+        "tonalRamp": [
+          "oklch(15.00% 0.09012 255.95)",
+          "oklch(26.43% 0.09012 255.95)",
+          "oklch(37.86% 0.09012 255.95)",
+          "oklch(49.29% 0.09012 255.95)",
+          "oklch(60.71% 0.09012 255.95)",
+          "oklch(72.14% 0.09012 255.95)",
+          "oklch(83.57% 0.09012 255.95)",
+          "oklch(95.00% 0.09012 255.95)"
+        ]
+      },
+      "thickness": {
+        "role": "primary",
+        "displayName": "Thickness",
+        "tonalRamp": [
+          "oklch(15.00% 0.17100 262.12)",
+          "oklch(26.43% 0.17100 262.12)",
+          "oklch(37.86% 0.17100 262.12)",
+          "oklch(49.29% 0.17100 262.12)",
+          "oklch(60.71% 0.17100 262.12)",
+          "oklch(72.14% 0.17100 262.12)",
+          "oklch(83.57% 0.17100 262.12)",
+          "oklch(95.00% 0.17100 262.12)"
+        ]
+      },
+      "complete-surface": {
+        "role": "semantic",
+        "displayName": "Complete surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.01407 162.47)",
+          "oklch(26.43% 0.01407 162.47)",
+          "oklch(37.86% 0.01407 162.47)",
+          "oklch(49.29% 0.01407 162.47)",
+          "oklch(60.71% 0.01407 162.47)",
+          "oklch(72.14% 0.01407 162.47)",
+          "oklch(83.57% 0.01407 162.47)",
+          "oklch(95.00% 0.01407 162.47)"
+        ]
+      },
+      "complete-text": {
+        "role": "semantic",
+        "displayName": "Complete text",
+        "tonalRamp": [
+          "oklch(15.00% 0.08381 159.37)",
+          "oklch(26.43% 0.08381 159.37)",
+          "oklch(37.86% 0.08381 159.37)",
+          "oklch(49.29% 0.08381 159.37)",
+          "oklch(60.71% 0.08381 159.37)",
+          "oklch(72.14% 0.08381 159.37)",
+          "oklch(83.57% 0.08381 159.37)",
+          "oklch(95.00% 0.08381 159.37)"
+        ]
+      },
+      "waiting-surface": {
+        "role": "neutral",
+        "displayName": "Waiting surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.00915 258.34)",
+          "oklch(26.43% 0.00915 258.34)",
+          "oklch(37.86% 0.00915 258.34)",
+          "oklch(49.29% 0.00915 258.34)",
+          "oklch(60.71% 0.00915 258.34)",
+          "oklch(72.14% 0.00915 258.34)",
+          "oklch(83.57% 0.00915 258.34)",
+          "oklch(95.00% 0.00915 258.34)"
+        ]
+      },
+      "bar-track": {
+        "role": "neutral",
+        "displayName": "Bar track",
+        "tonalRamp": [
+          "oklch(15.00% 0.01081 256.70)",
+          "oklch(26.43% 0.01081 256.70)",
+          "oklch(37.86% 0.01081 256.70)",
+          "oklch(49.29% 0.01081 256.70)",
+          "oklch(60.71% 0.01081 256.70)",
+          "oklch(72.14% 0.01081 256.70)",
+          "oklch(83.57% 0.01081 256.70)",
+          "oklch(95.00% 0.01081 256.70)"
+        ]
+      },
+      "bar-fill": {
+        "role": "primary",
+        "displayName": "Bar fill",
+        "tonalRamp": [
+          "oklch(15.00% 0.13251 263.19)",
+          "oklch(26.43% 0.13251 263.19)",
+          "oklch(37.86% 0.13251 263.19)",
+          "oklch(49.29% 0.13251 263.19)",
+          "oklch(60.71% 0.13251 263.19)",
+          "oklch(72.14% 0.13251 263.19)",
+          "oklch(83.57% 0.13251 263.19)",
+          "oklch(95.00% 0.13251 263.19)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Page headline",
+        "purpose": "Original dashboard heading from the reference screenshot."
+      },
+      "body": {
+        "displayName": "Introductory copy",
+        "purpose": "Introductory and empty-state paragraphs."
+      },
+      "metric": {
+        "displayName": "Traffic metric",
+        "purpose": "AADT, daily ESAL, and cumulative ESAL values."
+      },
+      "thickness": {
+        "displayName": "Recommended thickness",
+        "purpose": "Primary result in millimeters."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "control-color-transition",
+        "value": "background-color 160ms ease-out, border-color 160ms ease-out",
+        "purpose": "Download and standard button transitions; disabled by prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "fixed-setup-column-min",
+        "value": "1100px"
+      },
+      {
+        "name": "compact-desktop-max",
+        "value": "1099px"
+      },
+      {
+        "name": "stacked-workspace-max",
+        "value": "800px"
+      },
+      {
+        "name": "narrow-phone-max",
+        "value": "480px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Download button",
+      "kind": "button",
+      "description": "Native secondary download button; computed default from Streamlit 1.65.",
+      "html": "<button class=\"ds-download\">Download processed CSV</button>",
+      "css": ".ds-download{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;background:rgb(252,252,253);color:var(--pave-ink, #182337);border:1px solid rgba(24,35,55,.2);border-radius:8px;padding:4px 12px;font-size:13px;font-weight:600;line-height:20.8px;transition:background-color 160ms ease-out,border-color 160ms ease-out;}.ds-download:hover{border-color:var(--pave-blue, #2563eb);background:#eff5ff;}.ds-download:focus-visible{outline:2px solid var(--pave-blue, #2563eb);outline-offset:3px;}@media(prefers-reduced-motion:reduce){.ds-download{transition:none;}}",
+      "refersTo": "button-download"
+    },
+    {
+      "name": "Text field",
+      "kind": "input",
+      "description": "Native text field shape, label, and focus treatment.",
+      "html": "<label class=\"ds-label\" for=\"ds-location\">Project Location</label><div class=\"ds-field\"><input id=\"ds-location\"></div>",
+      "css": ".ds-label{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;display:block;color:var(--pave-ink, #182337);font-size:.8125rem;font-weight:600;margin-bottom:.5rem;}.ds-field{border:1px solid #8491a5;border-radius:8px;background:var(--pave-surface, #ffffff);}.ds-field input{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;min-height:42px;width:90%;border:0;background:transparent;color:var(--pave-ink, #182337);font-size:.875rem;padding:0 12px;caret-color:var(--pave-blue, #2563eb);}.ds-field input::placeholder{color:#69768a;opacity:1;}.ds-field:focus-within{border-color:var(--pave-blue, #2563eb);}.ds-field input:focus-visible{outline:2px solid var(--pave-blue, #2563eb);outline-offset:3px;}",
+      "refersTo": "text-field"
+    },
+    {
+      "name": "Result tabs",
+      "kind": "nav",
+      "description": "Visual specimen of the three Streamlit result tabs; app switching is provided by Streamlit.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button role=\"tab\" aria-selected=\"true\">Traffic overview</button><button role=\"tab\" aria-selected=\"false\">Uploaded Traffic Data</button><button role=\"tab\" aria-selected=\"false\">Calculation details</button></div>",
+      "css": ".ds-tabs{display:flex;gap:1.5rem;border-bottom:1px solid var(--pave-line, #e0e6ef);}.ds-tabs button{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;font-size:.875rem;font-weight:600;height:44px;padding:0;background:transparent;border:0;color:var(--pave-ink, #182337);white-space:nowrap;}.ds-tabs button[aria-selected=true]{color:var(--pave-blue, #2563eb);border-bottom:2px solid var(--pave-blue, #2563eb);}.ds-tabs button:hover{color:var(--pave-blue, #2563eb);}.ds-tabs button:focus-visible{outline:2px solid var(--pave-blue, #2563eb);outline-offset:3px;}@media(max-width:480px){.ds-tabs{gap:1.25rem;}}"
+    },
+    {
+      "name": "Traffic File Processed Successfully",
+      "kind": "chip",
+      "description": "Read-only analysis status, with the application check icon.",
+      "html": "<span class=\"ds-complete\" role=\"status\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m5 12 4 4L19 6\"/></svg>Traffic File Processed Successfully</span>",
+      "css": ".ds-complete{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;padding:.375rem .65rem;border-radius:6px;background:#eaf5ef;color:#236445;white-space:nowrap;}",
+      "refersTo": "status-complete"
+    },
+    {
+      "name": "Input Control Panel panel",
+      "kind": "card",
+      "description": "Bordered container for the upload and engineering parameters.",
+      "html": "<section class=\"ds-panel\"><h2>Input Control Panel</h2></section>",
+      "css": ".ds-panel{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;border:1px solid var(--pave-line, #e0e6ef);border-radius:var(--pave-radius, 14px);background:var(--pave-surface, #ffffff);padding:1.5rem;}.ds-panel h2{font-size:1.0625rem;font-weight:650;margin:0;color:var(--pave-ink, #182337);}.ds-panel p{font-size:.8125rem;line-height:1.55;color:var(--pave-muted, #59677c);margin:.4rem 0 0;}@media(max-width:1099px){.ds-panel{padding:1.125rem;}}",
+      "refersTo": "project-panel"
+    },
+    {
+      "name": "Metric strip",
+      "kind": "custom",
+      "description": "One of three metric cells, using the sample calculation for illustration.",
+      "html": "<div class=\"ds-metrics\"><div class=\"ds-metric\"><div class=\"ds-metric-label\">AADT</div><div class=\"ds-metric-value\">10,468.16</div><div class=\"ds-metric-unit\">veh/day</div></div></div>",
+      "css": ".ds-metrics{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;border:1px solid var(--pave-line, #e0e6ef);border-radius:var(--pave-radius, 14px);background:var(--pave-surface, #ffffff);padding:1.25rem 0;}.ds-metric{padding:0 1.5rem;}.ds-metric-label{color:var(--pave-muted, #59677c);font-size:.8125rem;margin-bottom:.45rem;}.ds-metric-value{color:var(--pave-ink, #182337);font-size:1.75rem;font-weight:650;letter-spacing:-.03em;line-height:1.25;font-variant-numeric:tabular-nums;}.ds-metric-unit{color:var(--pave-muted, #59677c);font-size:.75rem;margin-top:.35rem;}",
+      "refersTo": "metric-strip"
+    },
+    {
+      "name": "Thickness recommendation",
+      "kind": "custom",
+      "description": "Sample flexible-pavement result; the application supplies calculated content.",
+      "html": "<section class=\"ds-recommendation\"><h3>Recommended pavement thickness</h3><div class=\"ds-thickness\">150 <span>mm</span></div></section>",
+      "css": ".ds-recommendation{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;background:#eaf1ff;border:1px solid #ccdcfb;border-radius:var(--pave-radius, 14px);padding:1.5rem;}.ds-recommendation h3{font-size:.875rem;font-weight:650;color:#234776;margin:0 0 .65rem;}.ds-thickness{color:#1c4fb5;font-size:2.75rem;font-weight:650;letter-spacing:-.04em;line-height:1.05;font-variant-numeric:tabular-nums;}.ds-thickness span{font-size:1.125rem;font-weight:450;letter-spacing:0;}",
+      "refersTo": "recommendation"
+    },
+    {
+      "name": "Traffic composition",
+      "kind": "custom",
+      "description": "Representative first bar; values in this specimen are illustrative.",
+      "html": "<section class=\"ds-chart\"><h3>Traffic composition</h3><div class=\"ds-bar-row\"><span class=\"ds-bar-label\">Motorcycles</span><div class=\"ds-track\" aria-hidden=\"true\"><div class=\"ds-fill\"></div></div><span class=\"ds-count\">300</span><span class=\"ds-share\">60.0%</span></div></section>",
+      "css": ".ds-chart{font-family:\"Segoe UI\",-apple-system,BlinkMacSystemFont,sans-serif;border:1px solid var(--pave-line, #e0e6ef);border-radius:var(--pave-radius, 14px);background:var(--pave-surface, #ffffff);padding:1.5rem;}.ds-chart h3{color:var(--pave-ink, #182337);font-size:1rem;font-weight:650;margin:0 0 1.5rem;}.ds-bar-row{display:grid;grid-template-columns:minmax(110px,1.3fr) minmax(70px,1.4fr) 58px 42px;gap:1rem;align-items:center;}.ds-bar-label{font-size:.8125rem;color:#394b65;line-height:1.4;overflow-wrap:anywhere;}.ds-track{height:10px;background:#edf2f9;border-radius:3px;overflow:hidden;}.ds-fill{height:100%;width:100%;background:var(--pave-blue, #2563eb);border-radius:3px;}.ds-count{font-size:.8125rem;color:var(--pave-ink, #182337);font-weight:600;text-align:right;font-variant-numeric:tabular-nums;}.ds-share{font-size:.75rem;color:var(--pave-muted, #59677c);text-align:right;font-variant-numeric:tabular-nums;}@media(max-width:1099px){.ds-share{display:none;}.ds-bar-row{grid-template-columns:minmax(110px,1.4fr) minmax(40px,1fr) 45px;gap:.75rem;}}",
+      "refersTo": "traffic-chart"
+    }
+  ],
+  "narrative": {
+    "northStar": "Reference dashboard",
+    "overview": "Use the original dashboard title, subtitle, section titles, form labels, and success message. Keep the modern light/slate layout without added taglines, tutorial copy, workspace labels, or footer text. Calculation modules remain unchanged.",
+    "keyCharacteristics": [
+      "A persistent input control panel beside results on wide screens.",
+      "Numeric summaries followed by a blue thickness recommendation and detailed tabs.",
+      "Flat, bordered surfaces, system typography, and inline SVG symbols."
+    ],
+    "rules": [],
+    "dos": [
+      "Do keep CSS tokens and the Streamlit theme aligned when changing shared colors.",
+      "Do keep units, numeric alignment, and calculation context beside the values they explain.",
+      "Do verify desktop and stacked layouts, empty and error states, and keyboard focus after presentation edits.",
+      "Do escape uploaded or user-entered text before interpolating it into custom HTML."
+    ],
+    "donts": [
+      "Don't change calculation arguments, rounding, model minimums, or recommendation branches through presentation helpers.",
+      "Don't rely on color or chart width alone to communicate results.",
+      "Don't assume Streamlit internal selectors survive a framework upgrade; check native controls and tabs in the browser."
+    ]
+  }
+}

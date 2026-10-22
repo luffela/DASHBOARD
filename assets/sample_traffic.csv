@@ -1,0 +1,7 @@
+VEHICLE CLASS,ESAL FACTOR,DAY1,DAY2,DAY3,DAY4,DAY5
+Motorcycles,0.0007,179,246,285,233,451
+Passenger cars,0.0007,82,71,86,61,130
+Buses,0.9530,3,2,3,3,2
+Two axle six tire single unit trucks,0.7380,6,4,2,4,4
+Three axle single unit trucks,0.6440,2,4,2,1,2
+Four or more axle single unit trucks,0.1940,2,1,1,1,1
